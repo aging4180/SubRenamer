@@ -25,11 +25,11 @@ jobs:
       run: dotnet build
 
     - name: Publish
-      run: dotnet publish -c Release
+      run: dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true -p:PublishDir=.\artifacts\win-x64 --self-contained false
       working-directory: ./SubRenamer
 
     - name: Upload Build Artifact
       uses: actions/upload-artifact@v4.2.0
       with:
         name: SubRenamer
-        path: ./SubRenamer/bin/Release/net8.0-windows/publish
+        path: ./SubRenamer/artifacts
